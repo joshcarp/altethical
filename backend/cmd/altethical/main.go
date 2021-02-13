@@ -2,12 +2,12 @@
 package main
 
 import (
-	"github.com/sirupsen/logrus"
+    "github.com/joshcarp/it-project/backend/pkg/impl"
+    "github.com/sirupsen/logrus"
 
-	"github.com/joshcarp/it-project/backend/cmd/authenticate/authenticate"
-	"github.com/joshcarp/it-project/backend/pkg/server"
+    "github.com/joshcarp/it-project/backend/pkg/server"
 
-	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
+    _ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	if err != nil {
 		l.Fatal(err)
 	}
-	if err := authenticate.RegisterService(conf, l, s); err != nil {
+	if err := impl.RegisterService(conf, l, s); err != nil {
 		l.Fatal(err)
 	}
 	server.Serve(conf, l, handler)

@@ -14,11 +14,11 @@ docs.preview: sysl  ## Preview service documentation
 	docker run --rm -v $$(pwd)/:/usr/it-project:rw -p 6900:6900 -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --serve --embed --plantuml=https://plantuml.com/plantuml ./it-project/sysl/index.sysl
 
 proto:              ## Remake the proto generation
-	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I./itproject/proto/ --go_out=paths=source_relative:/itproject/backend/pkg/proto/itproject api.proto
-	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/ --go-grpc_out=paths=source_relative:/itproject/backend/pkg/proto/itproject api.proto
-	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/ --js_out=import_style=commonjs:/itproject/frontend/src/proto api.proto
-	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/ --grpc-web_out=import_style=commonjs,,mode=grpcwebtext:/itproject/frontend/src/proto api.proto
-	docker run --rm -v $$(pwd):/itproject:rw anzbank/protoc-gen-sysl:v0.0.20 $(INCLUDE) -I./itproject/proto/ --sysl_out=/itproject/sysl/generated/ api.proto
+	docker run --rm -v $$(pwd):/altethical:rw joshcarp/protoc $(INCLUDE) -I./altethical/proto/ --go_out=paths=source_relative:/altethical/backend/pkg/proto/altethical api.proto
+	docker run --rm -v $$(pwd):/altethical:rw joshcarp/protoc $(INCLUDE) -I././altethical/proto/ --go-grpc_out=paths=source_relative:/altethical/backend/pkg/proto/altethical api.proto
+	docker run --rm -v $$(pwd):/altethical:rw joshcarp/protoc $(INCLUDE) -I././altethical/proto/ --js_out=import_style=commonjs:/altethical/frontend/src/proto api.proto
+	docker run --rm -v $$(pwd):/altethical:rw joshcarp/protoc $(INCLUDE) -I././altethical/proto/ --grpc-web_out=import_style=commonjs,,mode=grpcwebtext:/altethical/frontend/src/proto api.proto
+	docker run --rm -v $$(pwd):/altethical:rw anzbank/protoc-gen-sysl:v0.0.28 $(INCLUDE) -I./altethical/proto/ --sysl_out=/altethical/sysl/generated/ api.proto
 	printf '%s\n%s\n' "/* eslint-disable */" "$$(cat ./frontend/src/proto/api_pb.js)" > ./frontend/src/proto/api_pb.js
 
 docker:             ## Build the authentication service
@@ -28,7 +28,7 @@ run:                ## Run docker
 	docker run --rm -p 443:443 joshcarp/it-project
 
 ping:               ## Ping the authentication service
-	docker run --rm joshcarp/grpcurl -d '{"email": "Hello", "password": "123", "userid": "123" }' --plaintext host.docker.internal:$(PORT) itproject.authenticate/Register
+	docker run --rm joshcarp/grpcurl -d '{"email": "Hello", "password": "123", "userid": "123" }' --plaintext host.docker.internal:$(PORT) altethical.authenticate/Register
 
 client:             ## Make the demo client
 	docker build . -f build/client.Dockerfile -t joshcarp/it-project-client

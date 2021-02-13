@@ -4,7 +4,7 @@
 # index.sysl
 | Package |
 ----|
-[itproject](itproject/itproject.md)|
+[altethical](altethical/altethical.md)|
 
 ## Integration Diagram
 

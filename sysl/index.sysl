@@ -2,10 +2,10 @@ import generated/index.sysl
 
 _[~project]:
     _:
-        itproject
+        altethical
 
 db[~db]:
-    @project="itproject"
+    @project="altethical"
     insert user:
         insert user
     retrieve user:
@@ -17,11 +17,11 @@ db[~db]:
     update_profile:
         return ok
 assets[~db]:
-    @project="itproject"
+    @project="altethical"
     upload:
         return url
 authenticate:
-    @project="itproject"
+    @project="altethical"
     login:
         google_secret_manager <- get_secret
         basic authentication
@@ -31,7 +31,7 @@ authenticate:
         db <- insert user
 
 profiles:
-    @project="itproject"
+    @project="altethical"
     getuser:
         db <- get_profile
     updateuser:
@@ -43,17 +43,17 @@ google_secret_manager:
         return secret
 
 search:
-    @project="itproject"
+    @project="altethical"
     search:
         db <- search_profiles
 
 upload:
-    @project="itproject"
+    @project="altethical"
     upload:
         assets <- upload
 
 frontend:
-    @project="itproject"
+    @project="altethical"
     upload:
         upload <- upload
 

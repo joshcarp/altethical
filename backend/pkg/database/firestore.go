@@ -7,7 +7,7 @@ import (
 
 	"cloud.google.com/go/firestore"
 	"github.com/joshcarp/it-project/backend/pkg/auth"
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/proto/altethical"
 )
 
 type Server struct {
@@ -22,7 +22,7 @@ func New(projectID string) (Server, error) {
 	return Server{client}, nil
 }
 
-func (s Server) EnterProfile(profile *itproject.Profile) error {
+func (s Server) EnterProfile(profile *altethical.Profile) error {
 	_, err := s.Client.Collection("profiles").Doc(profile.Username).Set(context.Background(), profile)
 	if err != nil {
 		return err
@@ -52,8 +52,8 @@ func (s Server) VerifyUser(username, password string) error {
 	return fmt.Errorf("Wrong password")
 }
 
-func (s Server) GetAccount(username string) (*itproject.Account, error) {
-	var acc = &itproject.Account{}
+func (s Server) GetAccount(username string) (*altethical.Account, error) {
+	var acc = &altethical.Account{}
 	a := s.Client.Collection("accounts").Doc(username)
 	b, err := a.Get(context.Background())
 	if err != nil {
@@ -65,7 +65,7 @@ func (s Server) GetAccount(username string) (*itproject.Account, error) {
 	return acc, nil
 }
 
-func (s Server) EnterUser(user *itproject.Account) error {
+func (s Server) EnterUser(user *altethical.Account) error {
 	_, err := s.Client.Collection("accounts").Doc(user.Username).Set(context.Background(), user)
 	if err != nil {
 		return err
@@ -73,8 +73,8 @@ func (s Server) EnterUser(user *itproject.Account) error {
 	return nil
 }
 
-func (s Server) GetProfile(user string) (*itproject.Profile, error) {
-	var acc = &itproject.Profile{}
+func (s Server) GetProfile(user string) (*altethical.Profile, error) {
+	var acc = &altethical.Profile{}
 	a := s.Client.Collection("profiles").Doc(user)
 	b, err := a.Get(context.Background())
 	if err != nil {
@@ -86,12 +86,12 @@ func (s Server) GetProfile(user string) (*itproject.Profile, error) {
 	return acc, nil
 }
 
-func (s Server) GetProfileLike(term string) ([]*itproject.Profile, error) {
+func (s Server) GetProfileLike(term string) ([]*altethical.Profile, error) {
 	a := s.Client.Collection("profiles").Documents(context.Background())
 	snapshot, err := a.Next()
-	var results []*itproject.Profile
+	var results []*altethical.Profile
 	for snapshot != nil && err == nil {
-		pr := &itproject.Profile{}
+		pr := &altethical.Profile{}
 		if err := snapshot.DataTo(&pr); err != nil {
 			return nil, err
 		}
