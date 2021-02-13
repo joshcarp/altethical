@@ -880,7 +880,7 @@ developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 | url | string | 
 
 url is in the form https:
-storage.googleapis.com/joshcarp-altethical-storage/<assetname>  
+storage.googleapis.com/altethical-storage/<assetname>  
 where assetname is a randomly assigned string 
 |
 
