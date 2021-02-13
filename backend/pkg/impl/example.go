@@ -3,7 +3,7 @@ package impl
 import (
     "context"
 
-    "github.com/joshcarp/it-project/backend/pkg/proto/altethical"
+    "github.com/joshcarp/altethical/backend/pkg/proto/altethical"
 )
 
 /* Verify allows for the frontend to check if a user can edit a page */

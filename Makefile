@@ -1,5 +1,5 @@
 all:proto
-PRODADDR=joshcarp-it-project-ogaheemccq-uc.a.run.app
+PRODADDR=joshcarp-altethical-ogaheemccq-uc.a.run.app
 PORT=443
 INCLUDE=-I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 .PHONY: proto proto-docker
@@ -7,11 +7,11 @@ INCLUDE=-I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 docs: sysl          ## Make sysl documentation
 	rm -rf service-documentation/ || true
 	mkdir service-documentation
-	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --embed --outputFileName={{.Title}}.md --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
-	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/docs/services:/out:rw  anzbank/sysl-catalog:v1.4.148 --type=html --embed --outputFileName=index.html --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project-html.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
+	docker run --rm -v $$(pwd)/:/usr/altethical:rw -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --embed --outputFileName={{.Title}}.md --plantuml=https://plantuml.com/plantuml --templates=altethical/sysl/templates/project.tmpl,altethical/sysl/templates/package.tmpl ./altethical/sysl/index.sysl
+	docker run --rm -v $$(pwd)/:/usr/altethical:rw -v $$(pwd)/docs/services:/out:rw  anzbank/sysl-catalog:v1.4.148 --type=html --embed --outputFileName=index.html --plantuml=https://plantuml.com/plantuml --templates=altethical/sysl/templates/project-html.tmpl,altethical/sysl/templates/package.tmpl ./altethical/sysl/index.sysl
 
 docs.preview: sysl  ## Preview service documentation
-	docker run --rm -v $$(pwd)/:/usr/it-project:rw -p 6900:6900 -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --serve --embed --plantuml=https://plantuml.com/plantuml ./it-project/sysl/index.sysl
+	docker run --rm -v $$(pwd)/:/usr/altethical:rw -p 6900:6900 -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --serve --embed --plantuml=https://plantuml.com/plantuml ./altethical/sysl/index.sysl
 
 proto:              ## Remake the proto generation
 	docker run --rm -v $$(pwd):/altethical:rw joshcarp/protoc $(INCLUDE) -I./altethical/proto/ --go_out=paths=source_relative:/altethical/backend/pkg/proto/altethical api.proto
@@ -22,19 +22,19 @@ proto:              ## Remake the proto generation
 	printf '%s\n%s\n' "/* eslint-disable */" "$$(cat ./frontend/src/proto/api_pb.js)" > ./frontend/src/proto/api_pb.js
 
 docker:             ## Build the authentication service
-	docker build .  --build-arg SERVICE=$(SERVICE) -t joshcarp/it-project
+	docker build .  --build-arg SERVICE=$(SERVICE) -t joshcarp/altethical
 
 run:                ## Run docker
-	docker run --rm -p 443:443 joshcarp/it-project
+	docker run --rm -p 443:443 joshcarp/altethical
 
 ping:               ## Ping the authentication service
 	docker run --rm joshcarp/grpcurl -d '{"email": "Hello", "password": "123", "userid": "123" }' --plaintext host.docker.internal:$(PORT) altethical.authenticate/Register
 
 client:             ## Make the demo client
-	docker build . -f build/client.Dockerfile -t joshcarp/it-project-client
+	docker build . -f build/client.Dockerfile -t joshcarp/altethical-client
 
 client.run:         ## Run the demo client in docker
-	docker run --rm -e ADDR=host.docker.internal:443 joshcarp/it-project-client
+	docker run --rm -e ADDR=host.docker.internal:443 joshcarp/altethical-client
 
 secret:             ## Remake a jwt secret
 	openssl rand -hex 64  | pbcopy

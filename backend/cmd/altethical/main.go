@@ -2,10 +2,10 @@
 package main
 
 import (
-    "github.com/joshcarp/it-project/backend/pkg/impl"
+    "github.com/joshcarp/altethical/backend/pkg/impl"
     "github.com/sirupsen/logrus"
 
-    "github.com/joshcarp/it-project/backend/pkg/server"
+    "github.com/joshcarp/altethical/backend/pkg/server"
 
     _ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
 )

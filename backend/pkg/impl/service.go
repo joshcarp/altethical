@@ -1,9 +1,9 @@
 package impl
 
 import (
-    "github.com/joshcarp/it-project/backend/pkg/config"
-    "github.com/joshcarp/it-project/backend/pkg/database"
-    "github.com/joshcarp/it-project/backend/pkg/proto/altethical"
+    "github.com/joshcarp/altethical/backend/pkg/config"
+    "github.com/joshcarp/altethical/backend/pkg/database"
+    "github.com/joshcarp/altethical/backend/pkg/proto/altethical"
     "github.com/sirupsen/logrus"
     "google.golang.org/grpc"
 )
