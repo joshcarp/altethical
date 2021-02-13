@@ -2,7 +2,6 @@ package impl
 
 import (
     "github.com/joshcarp/altethical/backend/pkg/config"
-    "github.com/joshcarp/altethical/backend/pkg/database"
     "github.com/joshcarp/altethical/backend/pkg/proto/altethical"
     "github.com/sirupsen/logrus"
     "google.golang.org/grpc"
@@ -12,16 +11,11 @@ import (
 type Server struct {
     config config.Config
     log    *logrus.Logger
-    db     database.Server
     altethical.UnimplementedAltethicalServer
 }
 
 func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
-    db, err := database.New(config.GCP.ProjectID)
-    if err != nil {
-        return nil, err
-    }
-    return &Server{config: config, db: db, log: log}, nil
+    return &Server{config: config, log: log}, nil
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {
