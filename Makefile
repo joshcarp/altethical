@@ -1,5 +1,5 @@
 all:proto
-PRODADDR=joshcarp-altethical-ogaheemccq-uc.a.run.app
+PRODADDR=altethical-ogaheemccq-uc.a.run.app
 PORT=443
 INCLUDE=-I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 .PHONY: proto proto-docker
