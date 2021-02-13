@@ -40,7 +40,7 @@ jobs:
             --image "gcr.io/altethical/altethical:$GITHUB_SHA" \
             --platform "managed" \
             --service-account github-actions@altethical.iam.gserviceaccount.com \
-            --allow-unaltethicald
+            --allow-unauthenticated
       - name: Set permissions
         run: |-
           gcloud run services add-iam-policy-binding altethical \
