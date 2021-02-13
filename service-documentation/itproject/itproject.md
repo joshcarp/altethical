@@ -1,7 +1,7 @@
 
 
 
-# itproject
+# altethical
 ## Integration Diagram
 <img src="https://plantuml.com/plantuml/svg/~1UDgCZasBsp0GXk_pAwQdd0n9d8GUGiY7tT9B3CMb1rECQayYRMJ9ZCRiBil-zoKe-92Jv_IYvvrvD9iyC9lXf7bK3t_AucT-pdyVoZp3Kv7bc2IO5NWkIiopN-MtiJhvwkI_mZw8OXaw2sB44XhfsRzG8w1DInY4cBoyzmIXKPQmKs-usAJVLwZ9NBL0k1dNArOTDhxhlICd-068HzNShkm7rvwyzOm_h6Tb_seZTAUUM-98ZbOrDq0yCFlN-7HYqmNlu1Egdlt5M0h_K0MivxZTQdFLzkxUxQ1g_qUmW7gEIRAxfogGuaP7i7pQg9TZRUYjLssifS-7LGWa3-iAwZHkhQ1IWsXoOXeb5F7wMR4U5HVsJiWz91keDn6jnxGSqtnCAUp9jKDdlm800F__CyYbSm00">
 
@@ -27,25 +27,25 @@
 
 | Application Name | Type Name |
 |----|----|
-| itproject | [account](#itproject.account) | 
-| itproject | [artifact](#itproject.artifact) | 
-| itproject | [echoRequest](#itproject.echoRequest) | 
-| itproject | [echoResponse](#itproject.echoResponse) | 
-| itproject | [empty](#itproject.empty) | 
-| itproject | [getClaimsResponse](#itproject.getClaimsResponse) | 
-| itproject | [getuserRequest](#itproject.getuserRequest) | 
-| itproject | [job](#itproject.job) | 
-| itproject | [loginRequest](#itproject.loginRequest) | 
-| itproject | [loginResponse](#itproject.loginResponse) | 
-| itproject | [profile](#itproject.profile) | 
-| itproject | [registerRequest](#itproject.registerRequest) | 
-| itproject | [registerResponse](#itproject.registerResponse) | 
-| itproject | [searchRequest](#itproject.searchRequest) | 
-| itproject | [searchResponse](#itproject.searchResponse) | 
-| itproject | [uploadRequest](#itproject.uploadRequest) | 
-| itproject | [uploadResponse](#itproject.uploadResponse) | 
-| itproject | [verifyRequest](#itproject.verifyRequest) | 
-| itproject | [verifyResponse](#itproject.verifyResponse) | 
+| altethical | [account](#altethical.account) | 
+| altethical | [artifact](#altethical.artifact) | 
+| altethical | [echoRequest](#altethical.echoRequest) | 
+| altethical | [echoResponse](#altethical.echoResponse) | 
+| altethical | [empty](#altethical.empty) | 
+| altethical | [getClaimsResponse](#altethical.getClaimsResponse) | 
+| altethical | [getuserRequest](#altethical.getuserRequest) | 
+| altethical | [job](#altethical.job) | 
+| altethical | [loginRequest](#altethical.loginRequest) | 
+| altethical | [loginResponse](#altethical.loginResponse) | 
+| altethical | [profile](#altethical.profile) | 
+| altethical | [registerRequest](#altethical.registerRequest) | 
+| altethical | [registerResponse](#altethical.registerResponse) | 
+| altethical | [searchRequest](#altethical.searchRequest) | 
+| altethical | [searchResponse](#altethical.searchResponse) | 
+| altethical | [uploadRequest](#altethical.uploadRequest) | 
+| altethical | [uploadResponse](#altethical.uploadResponse) | 
+| altethical | [verifyRequest](#altethical.verifyRequest) | 
+| altethical | [verifyResponse](#altethical.verifyResponse) | 
 
 
 
@@ -526,10 +526,10 @@ uploadResponse contains the url of the static asset
 
 
 
-<a name=itproject.account></a><details>
-<summary>itproject.account</summary>
+<a name=altethical.account></a><details>
+<summary>altethical.account</summary>
 
-### itproject.account
+### altethical.account
 
 
 - 
@@ -554,10 +554,10 @@ account contains all of the username/passwords and hashes.
 | username | string | |
 
 </details>
-<a name=itproject.artifact></a><details>
-<summary>itproject.artifact</summary>
+<a name=altethical.artifact></a><details>
+<summary>altethical.artifact</summary>
 
-### itproject.artifact
+### altethical.artifact
 
 
 - artifact is a generic entry in the frontend 
@@ -576,10 +576,10 @@ account contains all of the username/passwords and hashes.
 | title | string | |
 
 </details>
-<a name=itproject.echoRequest></a><details>
-<summary>itproject.echoRequest</summary>
+<a name=altethical.echoRequest></a><details>
+<summary>altethical.echoRequest</summary>
 
-### itproject.echoRequest
+### altethical.echoRequest
 
 
 - echoRequest is the request object for EchoService 
@@ -596,10 +596,10 @@ account contains all of the username/passwords and hashes.
 | message | string | |
 
 </details>
-<a name=itproject.echoResponse></a><details>
-<summary>itproject.echoResponse</summary>
+<a name=altethical.echoResponse></a><details>
+<summary>altethical.echoResponse</summary>
 
-### itproject.echoResponse
+### altethical.echoResponse
 
 
 - echoResponse is the response from the EchoService 
@@ -616,10 +616,10 @@ account contains all of the username/passwords and hashes.
 | message | string | |
 
 </details>
-<a name=itproject.empty></a><details>
-<summary>itproject.empty</summary>
+<a name=altethical.empty></a><details>
+<summary>altethical.empty</summary>
 
-### itproject.empty
+### altethical.empty
 
 
 - empty is an empty type for messages that don't need a payload 
@@ -628,10 +628,10 @@ account contains all of the username/passwords and hashes.
 <a href="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwANc5fHKAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWGG003__rF4E080">Full Diagram</a>
 
 </details>
-<a name=itproject.getClaimsResponse></a><details>
-<summary>itproject.getClaimsResponse</summary>
+<a name=altethical.getClaimsResponse></a><details>
+<summary>altethical.getClaimsResponse</summary>
 
-### itproject.getClaimsResponse
+### altethical.getClaimsResponse
 
 
 - getClaimsResponse contains a username 
@@ -648,10 +648,10 @@ account contains all of the username/passwords and hashes.
 | username | string | |
 
 </details>
-<a name=itproject.getuserRequest></a><details>
-<summary>itproject.getuserRequest</summary>
+<a name=altethical.getuserRequest></a><details>
+<summary>altethical.getuserRequest</summary>
 
-### itproject.getuserRequest
+### altethical.getuserRequest
 
 
 - getuserRequest contains a username to respond 
@@ -668,10 +668,10 @@ account contains all of the username/passwords and hashes.
 | userid | string | |
 
 </details>
-<a name=itproject.job></a><details>
-<summary>itproject.job</summary>
+<a name=altethical.job></a><details>
+<summary>altethical.job</summary>
 
-### itproject.job
+### altethical.job
 
 
 - job contains information to display in the frontend timeline 
@@ -691,10 +691,10 @@ account contains all of the username/passwords and hashes.
 | title | string | |
 
 </details>
-<a name=itproject.loginRequest></a><details>
-<summary>itproject.loginRequest</summary>
+<a name=altethical.loginRequest></a><details>
+<summary>altethical.loginRequest</summary>
 
-### itproject.loginRequest
+### altethical.loginRequest
 
 
 - loginRequest is empty because the Bas64(username:password) is contained in the 
@@ -704,10 +704,10 @@ header of the request
 <a href="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwENafsVc1QKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbW0864000__y4tJhL">Full Diagram</a>
 
 </details>
-<a name=itproject.loginResponse></a><details>
-<summary>itproject.loginResponse</summary>
+<a name=altethical.loginResponse></a><details>
+<summary>altethical.loginResponse</summary>
 
-### itproject.loginResponse
+### altethical.loginResponse
 
 
 - loginRequest is the response object from Login that is used in bearer authentic
@@ -725,10 +725,10 @@ ation in the header: "Bearer <JWT>"
 | jwt | string | |
 
 </details>
-<a name=itproject.profile></a><details>
-<summary>itproject.profile</summary>
+<a name=altethical.profile></a><details>
+<summary>altethical.profile</summary>
 
-### itproject.profile
+### altethical.profile
 
 
 - profile is the data model of the page that is displayed to a user 
@@ -753,10 +753,10 @@ ation in the header: "Bearer <JWT>"
 | username | string | |
 
 </details>
-<a name=itproject.registerRequest></a><details>
-<summary>itproject.registerRequest</summary>
+<a name=altethical.registerRequest></a><details>
+<summary>altethical.registerRequest</summary>
 
-### itproject.registerRequest
+### altethical.registerRequest
 
 
 - registerRequest contains all the information to register the user in the databa
@@ -778,10 +778,10 @@ se
 | username | string | |
 
 </details>
-<a name=itproject.registerResponse></a><details>
-<summary>itproject.registerResponse</summary>
+<a name=altethical.registerResponse></a><details>
+<summary>altethical.registerResponse</summary>
 
-### itproject.registerResponse
+### altethical.registerResponse
 
 
 - RegisterResponse is the response from the registration services 
@@ -798,10 +798,10 @@ se
 | jwt | string | |
 
 </details>
-<a name=itproject.searchRequest></a><details>
-<summary>itproject.searchRequest</summary>
+<a name=altethical.searchRequest></a><details>
+<summary>altethical.searchRequest</summary>
 
-### itproject.searchRequest
+### altethical.searchRequest
 
 
 - searchRequest has the term query that should be searched for 
@@ -818,10 +818,10 @@ se
 | term | string | |
 
 </details>
-<a name=itproject.searchResponse></a><details>
-<summary>itproject.searchResponse</summary>
+<a name=altethical.searchResponse></a><details>
+<summary>altethical.searchResponse</summary>
 
-### itproject.searchResponse
+### altethical.searchResponse
 
 
 - searchResponse is a type that contains the profiles that match the search term 
@@ -838,10 +838,10 @@ se
 | results | sequence of profile | |
 
 </details>
-<a name=itproject.uploadRequest></a><details>
-<summary>itproject.uploadRequest</summary>
+<a name=altethical.uploadRequest></a><details>
+<summary>altethical.uploadRequest</summary>
 
-### itproject.uploadRequest
+### altethical.uploadRequest
 
 
 - upload request contains the data to upload an asset to gcp 
@@ -860,10 +860,10 @@ developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 |
 
 </details>
-<a name=itproject.uploadResponse></a><details>
-<summary>itproject.uploadResponse</summary>
+<a name=altethical.uploadResponse></a><details>
+<summary>altethical.uploadResponse</summary>
 
-### itproject.uploadResponse
+### altethical.uploadResponse
 
 
 - uploadResponse contains the url of the static asset 
@@ -885,10 +885,10 @@ where assetname is a randomly assigned string
 |
 
 </details>
-<a name=itproject.verifyRequest></a><details>
-<summary>itproject.verifyRequest</summary>
+<a name=altethical.verifyRequest></a><details>
+<summary>altethical.verifyRequest</summary>
 
-### itproject.verifyRequest
+### altethical.verifyRequest
 
 
 - verifyRequest is used in the veryfy endpoint 
@@ -905,10 +905,10 @@ where assetname is a randomly assigned string
 | username | string | |
 
 </details>
-<a name=itproject.verifyResponse></a><details>
-<summary>itproject.verifyResponse</summary>
+<a name=altethical.verifyResponse></a><details>
+<summary>altethical.verifyResponse</summary>
 
-### itproject.verifyResponse
+### altethical.verifyResponse
 
 
 - verifyResponse is a message that has verified=true if the authenticated used ha
