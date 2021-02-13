@@ -1,4 +1,4 @@
-module github.com/joshcarp/it-project
+module github.com/joshcarp/altethical
 
 go 1.14
 

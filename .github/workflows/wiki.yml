@@ -12,23 +12,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: joshcarp/it-project.wiki
-          path: it-project.wiki
+          repository: joshcarp/altethical.wiki
+          path: altethical.wiki
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          path: it-project
+          path: altethical
       - name: remove old service docs
-        working-directory: it-project.wiki
+        working-directory: altethical.wiki
         run: |
           rm -rf service-documentation
       - name: Gen Docs
-        working-directory: it-project
+        working-directory: altethical
         run: |
           make docs -B
-          mv service-documentation ../it-project.wiki
+          mv service-documentation ../altethical.wiki
       - name: git add
-        working-directory: it-project.wiki
+        working-directory: altethical.wiki
         run: |
           git config --global user.email "joshuacarpeggiani@gmail.com"
           git config --global user.name "Sync Action"
@@ -37,6 +37,6 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          repository: joshcarp/it-project.wiki
-          directory: it-project.wiki
+          repository: joshcarp/altethical.wiki
+          directory: altethical.wiki
           github_token: ${{ secrets.GITHUB_TOKEN }}

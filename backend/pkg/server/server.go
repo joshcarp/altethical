@@ -11,7 +11,7 @@ import (
 	"github.com/sirupsen/logrus"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/joshcarp/it-project/backend/pkg/config"
+	"github.com/joshcarp/altethical/backend/pkg/config"
 	"github.com/spf13/afero"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

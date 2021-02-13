@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"cloud.google.com/go/firestore"
-	"github.com/joshcarp/it-project/backend/pkg/auth"
-	"github.com/joshcarp/it-project/backend/pkg/proto/altethical"
+	"github.com/joshcarp/altethical/backend/pkg/auth"
+	"github.com/joshcarp/altethical/backend/pkg/proto/altethical"
 )
 
 type Server struct {

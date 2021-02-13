@@ -4,7 +4,7 @@
 
 - A Portfolio website designed for COMP30022
 
-Click [here](https://github.com/joshcarp/it-project/wiki) for documentation
+Click [here](https://github.com/joshcarp/altethical/wiki) for documentation
 
 ## Directory structure
 
