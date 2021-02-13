@@ -1,0 +1,25 @@
+#edit-modal {
+    width: 40em;
+    height: 60em;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: 2px dashed black;
+    border-radius: 2em;
+    display: none;
+}
+
+
+#modal-textarea{
+    display: block;
+    margin: auto;
+    margin-top: 3em;
+    width: 80%;
+    height: 60%;
+}
+
+#modal-title{
+    text-align: center;
+    font-size: x-large;
+}

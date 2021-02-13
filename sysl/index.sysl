@@ -1,0 +1,70 @@
+import generated/index.sysl
+
+_[~project]:
+    _:
+        itproject
+
+db[~db]:
+    @project="itproject"
+    insert user:
+        insert user
+    retrieve user:
+        return user
+    get_profile:
+        return profile
+    search_profiles:
+        return matching profiles
+    update_profile:
+        return ok
+assets[~db]:
+    @project="itproject"
+    upload:
+        return url
+authenticate:
+    @project="itproject"
+    login:
+        google_secret_manager <- get_secret
+        basic authentication
+        db <- retrieve user
+    register:
+        google_secret_manager <- get_secret
+        db <- insert user
+
+profiles:
+    @project="itproject"
+    getuser:
+        db <- get_profile
+    updateuser:
+        google_secret_manager <- get_secret
+        db <- update_profile
+
+google_secret_manager:
+    get_secret:
+        return secret
+
+search:
+    @project="itproject"
+    search:
+        db <- search_profiles
+
+upload:
+    @project="itproject"
+    upload:
+        assets <- upload
+
+frontend:
+    @project="itproject"
+    upload:
+        upload <- upload
+
+    register:
+        authenticate <- register
+        . <- u/user
+    login:
+        authenticate <- login
+        . <- u/user
+    search:
+        search <- search
+        display users
+    u/user:
+        profiles <- getuser

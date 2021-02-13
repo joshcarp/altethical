@@ -1,0 +1,215 @@
+syntax = "proto3";
+
+option go_package = "github.com/joshcarp/itproject/;itproject";
+option java_multiple_files = true;
+option java_package = "com.joshcarp.itproject";
+option java_outer_classname = "pi";
+
+package itproject;
+
+/* ---------------------------------------------------------- */
+
+/*
+authenticate 
+miroservice that handles authentication and issues JWTs with username claims.
+*/
+service authenticate {
+
+    /* register is used to register a user and acquire a JWT */
+    rpc register(registerRequest) returns (registerResponse);
+
+    /* registerFirebase is used to register a user and acquire a JWT */
+    rpc registerFirebase(empty) returns (empty);
+
+    /* Login is used to login to acquire a JWT */
+    rpc login(loginRequest) returns (loginResponse);
+
+    /* verify is used to verify if a user has permissions to edit a profile */
+    rpc verify(verifyRequest) returns (verifyResponse);
+
+    /* getClaims is used to get which user is currently logged in */
+    rpc getClaims(empty) returns (getClaimsResponse);
+}
+
+/* --- register types --- */
+
+/* registerRequest contains all the information to register the user in the database */
+message registerRequest {
+    string email = 1;
+    string username = 2;
+    string fullName = 3;
+    string preferredName = 4;
+    string password = 5;
+}
+
+/* RegisterResponse is the response from the registration services */
+message registerResponse{
+    string jwt = 2;
+}
+
+/* --- login types --- */
+
+/* loginRequest is empty because the Bas64(username:password) is contained in the header of the request */
+message loginRequest {
+}
+
+/* loginRequest is the response object from Login that is used in bearer authentication in the header: "Bearer <JWT>" */
+message loginResponse {
+    string jwt = 1;
+}
+
+/* --- verify types --- */
+
+/* verifyRequest is used in the veryfy endpoint */
+message verifyRequest {
+    string username = 1;
+}
+
+/* verifyResponse is a message that has verified=true if the authenticated used has the ability to edit the page*/
+message verifyResponse {
+    bool verified = 1;
+}
+
+/* --- getClaims types --- */
+
+/* getClaimsResponse contains a username */
+message getClaimsResponse {
+    string username = 1;
+}
+
+/* empty is an empty type for messages that don't need a payload */
+message empty{}
+
+/* ---------------------------------------------------------- */
+/* --- echo --- */
+
+/* EchoService is a basic service to test connections */
+service echo {
+    
+    /* echo is a method to test service deployments */
+    rpc echo(echoRequest) returns (echoResponse);
+}
+
+/* --- echo types --- */
+
+/* echoRequest is the request object for EchoService */
+message echoRequest {
+    string message = 1;
+}
+
+/* echoResponse is the response from the EchoService */
+message echoResponse {
+    string message = 1;
+}
+
+/* ---------------------------------------------------------- */
+/* --- profiles service --- */
+
+/* profiles is a service to retrieve and update a profile that is displayed */
+service profiles {
+
+    /* getuser gets a user from a userid */
+    rpc getuser(getuserRequest) returns (profile);
+
+    /* updateuser updates a profile */
+    rpc updateuser(profile) returns (empty);
+}
+
+/* --- request types --- */
+
+/* getuserRequest contains a username to respond */
+message getuserRequest {
+    string userid = 1;
+}
+
+/* profile is the data model of the page that is displayed to a user */
+message profile {
+    string username = 1;
+    string email = 2;
+    string full_name = 3;
+    string picture = 4;
+    string bio = 5;
+    repeated string links = 8 [json_name = "linksList"];
+    repeated job jobs = 6 [json_name = "jobsList"];
+    repeated artifact artifacts = 7 [json_name = "artifactsList"];
+    string content = 9;
+}
+
+/* job contains information to display in the frontend timeline */
+message job {
+    string dates = 2;
+    string title = 3;
+    string company = 4;
+    string description = 5;
+}
+
+/* artifact is a generic entry in the frontend */
+message artifact {
+    string title = 3;
+    string description = 4;
+    string link = 5;
+}
+
+/* ---------------------------------------------------------- */
+/* --- upload service --- */
+
+/* upload service is used to upload static assets to gcs */
+service upload {
+
+    /* upload uploads a static asset to gcp and returns a url */
+    rpc upload(uploadRequest) returns(uploadResponse);
+}
+
+/* --- upload types --- */
+
+/* upload request contains the data to upload an asset to gcp */
+message uploadRequest {
+
+    /* dataurl is a string that conforms to the data url schema: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs */
+    string dataurl = 1;
+}
+
+/* uploadResponse contains the url of the static asset */
+message uploadResponse {
+
+    /* 
+    url is in the form https://storage.googleapis.com/joshcarp-it-project-storage/<assetname>  
+    where assetname is a randomly assigned string 
+    */
+    string url = 1;
+}
+
+/* --- search service --- */
+
+/* search is a service that is used to find a profile/user based on a search parameter */
+service search {
+    rpc search(searchRequest) returns(searchResponse);
+}
+
+/* --- search types --- */
+
+/* searchRequest has the term query that should be searched for */
+message searchRequest {
+    string term = 1;
+}
+
+/* searchResponse is a type that contains the profiles that match the search term */
+message searchResponse {
+    /* results contains all of the profiles that match the search term */
+    repeated profile results = 1;
+}
+
+/* --- firebase types --- */
+
+/* 
+account is an account that is stored in the firebase database.
+account contains all of the username/passwords and hashes.
+*/
+message account {
+    string username = 1;
+    string email = 2;
+    string preferred_name = 3;
+    string name = 4;
+    string password = 5;
+    string salt = 6;
+}

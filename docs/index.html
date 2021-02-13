@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta name="generator" content="Hugo 0.71.0-DEV" />
+    <meta charset="utf-8">
+<title>epicportfol.io</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/default.min.css">
+    
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="___by-epic-corp___"><figure>
+    <img src="logo.svg" height="550"/> 
+</figure>
+
+<em><strong>by epic corp</strong></em></h2>
+<figure>
+    <img src="screenshot1.png" height="550"/> 
+</figure>
+
+</section><section>
+<h1 id="intro">Intro</h1>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Angus</td>
+<td align="center">Our Team and Philosophy</td>
+</tr>
+<tr>
+<td align="center">Josh</td>
+<td align="center">CI/CD &amp; Back-end</td>
+</tr>
+<tr>
+<td align="center">Kevin</td>
+<td align="center">Client Requirements</td>
+</tr>
+<tr>
+<td align="center">Haohan</td>
+<td align="center">Design</td>
+</tr>
+<tr>
+<td align="center">Philip</td>
+<td align="center">Front-end</td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h2 id="integrate-everything">Integrate everything</h2>
+<figure>
+    <img src="gh.svg" height="550"/> 
+</figure>
+
+</section><section>
+<h2 id="integrate-everything-1">Integrate Everything</h2>
+<figure>
+    <img src="gh-screenshot.png" height="550"/> 
+</figure>
+
+</section><section>
+<h2 id="agile-mindset">Agile Mindset</h2>
+<p>&ldquo;Make decisions and re-avaulate when more information comes to light&rdquo;</p>
+</section><section>
+<h2 id="adapting-to-challenges">Adapting to Challenges</h2>
+<p><em><strong>Deployment</strong></em></p>
+<p>Cloud Build -&gt; GitHub Actions</p>
+<p><em><strong>Database</strong></em></p>
+<p>Cloud SQL -&gt; Cloud Datastore</p>
+<p><em><strong>Authentication</strong></em></p>
+<p>DIY Login/Register (JWT) -&gt; Firebase</p>
+<p><em><strong>Design</strong></em></p>
+<p>DIY components -&gt; Material UI</p>
+</section><section>
+<h1 id="cicd">CI/CD</h1>
+<ul>
+<li>
+<p>Robust</p>
+</li>
+<li>
+<p>Simple and integrated</p>
+</li>
+<li>
+<p>Easy to extend</p>
+</li>
+</ul>
+</section><section>
+<figure>
+    <img src="pipeline-old.svg" height="500"/> 
+</figure>
+
+</section><section>
+<!-- raw HTML omitted -->
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">cloudbuild</th>
+<th align="center">gh actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">reliable</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">maintainability</td>
+<td align="center">✗</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">extendable</td>
+<td align="center">✗</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="center">integrated</td>
+<td align="center">✗</td>
+<td align="center">✓</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+</section><section>
+<figure>
+    <img src="workflows.yml.png" height="500"/> 
+</figure>
+
+</section><section>
+<h1 id="rest-services">Rest services</h1>
+<ul>
+<li>manual</li>
+<li>manual documentation</li>
+<li>manual server interfaces</li>
+<li>manual clients</li>
+</ul>
+</section><section>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape>
+  <span style="color:#a6e22e">componentDidMount</span>() {
+    <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;https://api.example.com/items&#34;</span>) <span style="color:#75715e">// or is it /item?
+</span><span style="color:#75715e"></span>      .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">res</span> =&gt; <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>())
+    <span style="color:#75715e">//...
+</span></code></pre></div></section><section>
+<h1 id="grpc--proto">GRPC + Proto</h1>
+<ul>
+<li>Client + Server generation</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape><span style="color:#75715e">/* upload service is used to upload static assets to gcs */</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">service</span> upload {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#75715e">/* upload uploads a static asset to gcp and returns a url */</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">rpc</span> upload(uploadRequest) <span style="color:#66d9ef">returns</span>(uploadResponse);<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">uploadRequest</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">string</span> dataurl <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">uploadResponse</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">string</span> url <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div></section><section>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">upload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">uploadClient</span>(<span style="color:#e6db74">&#39;https://upload.epicportfol.io&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">uploadRequest</span>();
+<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">setDataurl</span>(<span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">result</span>);
+<span style="color:#a6e22e">upload</span>.<span style="color:#a6e22e">upload</span>(<span style="color:#a6e22e">request</span>, {}, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) {
+    <span style="color:#75715e">//...
+</span></code></pre></div></section><section>
+<h3 id="automatic-documentation">Automatic documentation</h3>
+<ul>
+<li><a href="https://docs.epicportfol.io/services/">Link</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><figure>
+    <img src="integration.png" height="300"/> 
+</figure>
+</td>
+<td align="center"><figure>
+    <img src="index.png" width="400"/> 
+</figure>
+</td>
+<td align="center"><figure>
+    <img src="upload.png" width="400"/> 
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+</section><section>
+<figure>
+    <img src="pipeline.svg" height="500"/> 
+</figure>
+
+</section><section>
+<h1 id="client-requirements">Client requirements</h1>
+<ul>
+<li>Project Goal</li>
+<li>Design</li>
+<li>Users</li>
+<li>Technology</li>
+<li>Potential users</li>
+</ul>
+</section><section>
+<h1 id="design">Design</h1>
+<ol>
+<li>Brand</li>
+<li>Wireframes</li>
+<li>Aesthetics</li>
+<li>Material UI</li>
+</ol>
+</section><section>
+<h1 id="brand">Brand</h1>
+<figure>
+    <img src="logo-progress.png" height="500"/> 
+</figure>
+
+</section><section>
+<h1 id="brand-1">Brand</h1>
+<figure>
+    <img src="logo-current.png" height="500"/> 
+</figure>
+
+</section><section>
+<h1 id="wireframes">Wireframes</h1>
+<p>The Homepage</p>
+<figure>
+    <img src="wireframe-homepage.png"/> 
+</figure>
+
+</section><section>
+<figure>
+    <img src="screenshot1.png" height="550"/> 
+</figure>
+
+</section><section>
+<h1 id="wireframes-1">Wireframes</h1>
+<p>The Profile</p>
+<figure>
+    <img src="wireframe-profile.png" height="400"/> 
+</figure>
+
+</section><section>
+<figure>
+    <img src="joshcarp.png" height="550"/> 
+</figure>
+
+</section><section>
+<h1 id="aesthetics">Aesthetics</h1>
+<p>What are the core values an ePortfolio platform needs?</p>
+<ul>
+<li>Responsive</li>
+<li>Modern</li>
+<li>Familiar</li>
+<li>Intuitive</li>
+</ul>
+</section><section>
+<h1 id="material-ui">Material UI</h1>
+<ul>
+<li>Responsive   ☑</li>
+<li>Modern   ☑</li>
+<li>Familiar   ☑</li>
+<li>Intuitive   ☑</li>
+</ul>
+</section><section>
+<h1 id="why-react">Why React?</h1>
+<ul>
+<li>Modularity suits development style</li>
+<li>Integrates with Material UI</li>
+<li>Industry’s most popular framework</li>
+</ul>
+</section><section>
+<h1 id="editor">Editor</h1>
+<figure>
+    <img src="editmodaler.png" height="500"/> 
+</figure>
+
+</section><section>
+<h1 id="learn-from-user-interaction">Learn from User Interaction</h1>
+<figure>
+    <img src="graph.png" height="400"/> 
+</figure>
+
+</section><section>
+<h1 id="___pre-order-now___"><em><strong>Pre order now!</strong></em></h1>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">null</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+    
+    
+  </body>
+</html>

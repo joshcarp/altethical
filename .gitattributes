@@ -1,0 +1,5 @@
+backend/pkg/proto linguist-generated=true
+docs/ linguist-generated=true
+frontend/public linguist-generated=true
+sysl/generated linguist-generated=true
+frontend/package-lock.json linguist-generated=true

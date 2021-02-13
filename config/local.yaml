@@ -1,0 +1,8 @@
+server:
+    port:  443
+gcp:
+    projectid:  "joshcarp-it-project"
+    projectnum: "968747045906"
+    databaseurl:   "https://joshcarp-it-project.firebaseio.com"
+    storagebucket: "joshcarp-it-project.appspot.com"
+    secretname: "jwtkey"

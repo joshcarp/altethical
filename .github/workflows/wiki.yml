@@ -1,0 +1,42 @@
+name: Docs
+on:
+    push:
+        branches: [ master ]
+        paths:
+        - 'proto/*'
+        - 'sysl/*'
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: joshcarp/it-project.wiki
+          path: it-project.wiki
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: it-project
+      - name: remove old service docs
+        working-directory: it-project.wiki
+        run: |
+          rm -rf service-documentation
+      - name: Gen Docs
+        working-directory: it-project
+        run: |
+          make docs -B
+          mv service-documentation ../it-project.wiki
+      - name: git add
+        working-directory: it-project.wiki
+        run: |
+          git config --global user.email "joshuacarpeggiani@gmail.com"
+          git config --global user.name "Sync Action"
+          git add -A
+          git commit -m "Update service documentation"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          repository: joshcarp/it-project.wiki
+          directory: it-project.wiki
+          github_token: ${{ secrets.GITHUB_TOKEN }}

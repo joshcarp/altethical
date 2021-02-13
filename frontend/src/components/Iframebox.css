@@ -1,0 +1,21 @@
+#i-frame-outer{
+    width: 40em;
+    height: 32em;
+    display: block;
+    margin: auto;
+}
+
+#videoframe {
+    width: 100%;
+    height: 80%;
+    margin-top: 1em;
+}
+
+#iframe-title{
+    text-align: center;
+}
+
+#iframe-text{
+    text-align: center;
+    font-size: medium;
+}

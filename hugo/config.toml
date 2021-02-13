@@ -1,0 +1,10 @@
+baseURL = "https://docs.epicportfol.io"
+languageCode = "en-us"
+title = "My New Hugo Site"
+
+theme = "reveal-hugo"
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
