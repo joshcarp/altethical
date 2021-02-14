@@ -27,10 +27,10 @@ func main() {
     c := altethical.NewAltethicalClient(conn)
 
     // Contact the server and print out its response.
-    ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+    ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
     defer cancel()
     r, err := c.Signup(ctx, &altethical.SignupRequest{
-        Url: "http://etiko.com.au/",
+        Url: "http://etiko.com.au",
     })
     if err != nil {
         log.Fatalf("could not greet: %v", err)
