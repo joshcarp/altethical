@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ImageUploader from 'react-images-upload';
 
 const {altethicalClient} = require('./proto/api_grpc_web_pb.js');
-const searcher = new altethicalClient('https://altethical-sbpkzphfpq-uc.a.run.app/');
+const searcher = new altethicalClient('http://localhost:443');
 const {searchRequest} = require('./proto/api_pb.js');
 
 export default function CustomizedTimeline(props) {
