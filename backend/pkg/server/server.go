@@ -1,8 +1,11 @@
 package server
 
 import (
-	"flag"
-	"net"
+    "context"
+    "flag"
+    "golang.org/x/net/http2"
+    "golang.org/x/net/http2/h2c"
+    "net"
 	"net/http"
 	"os"
 
@@ -34,9 +37,23 @@ func SetupServer() (*grpc.Server, http.Handler, config.Config, error) {
 	}
 	s := grpc.NewServer()
 	reflection.Register(s)
-	return s, grpcweb.WrapServer(s, grpcweb.WithOriginFunc(func(origin string) bool {
-		return true
-	})), conf, nil
+	httpHandler := grpcweb.WrapServer(s, grpcweb.WithOriginFunc(func(origin string) bool {
+        return true
+    }))
+	return s, grpcDispatcher(context.Background(), s, httpHandler), conf, nil
+}
+
+func grpcDispatcher(ctx context.Context, grpcHandler http.Handler, httpHandler http.Handler) http.Handler {
+    hf := func(w http.ResponseWriter, r *http.Request) {
+        req := r.WithContext(ctx)
+
+        if r.ProtoMajor == 2 {
+            grpcHandler.ServeHTTP(w, req)
+        } else {
+            httpHandler.ServeHTTP(w, req)
+        }
+    }
+    return h2c.NewHandler(http.HandlerFunc(hf), &http2.Server{})
 }
 
 func Serve(conf config.Config, l *logrus.Logger, handler http.Handler) {

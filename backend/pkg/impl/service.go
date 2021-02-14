@@ -1,21 +1,36 @@
 package impl
 
 import (
+    "cloud.google.com/go/storage"
+    vision "cloud.google.com/go/vision/apiv1"
+    "context"
     "github.com/joshcarp/altethical/backend/pkg/config"
     "github.com/joshcarp/altethical/backend/pkg/proto/altethical"
     "github.com/sirupsen/logrus"
     "google.golang.org/grpc"
+    "net/http"
 )
 
 /* Server is the struct that implements the authenticate service interface */
 type Server struct {
-    config config.Config
-    log    *logrus.Logger
+    config        config.Config
+    productClient *vision.ProductSearchClient
+    httpClient    *http.Client
+    storageClient *storage.Client
+    log           *logrus.Logger
     altethical.UnimplementedAltethicalServer
 }
 
-func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
-    return &Server{config: config, log: log}, nil
+func NewServer(config config.Config, log *logrus.Logger) (Server, error) {
+    productClient, err := vision.NewProductSearchClient(context.Background())
+    if err != nil {
+        return Server{}, err
+    }
+    storageClient, err := storage.NewClient(context.Background())
+    if err != nil {
+        return Server{}, err
+    }
+    return Server{config: config, log: log, productClient: productClient, httpClient: http.DefaultClient, storageClient: storageClient}, nil
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {

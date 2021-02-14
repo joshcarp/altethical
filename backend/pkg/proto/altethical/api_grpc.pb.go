@@ -19,6 +19,9 @@ const _ = grpc.SupportPackageIsVersion7
 type AltethicalClient interface {
 	// example is used to get which user is currently logged in
 	Example(ctx context.Context, in *ExampleRequest, opts ...grpc.CallOption) (*ExampleResponse, error)
+	Reindex(ctx context.Context, in *ReindexRequest, opts ...grpc.CallOption) (*ReindexResponse, error)
+	Signup(ctx context.Context, in *SignupRequest, opts ...grpc.CallOption) (*SignupResponse, error)
+	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 }
 
 type altethicalClient struct {
@@ -38,12 +41,42 @@ func (c *altethicalClient) Example(ctx context.Context, in *ExampleRequest, opts
 	return out, nil
 }
 
+func (c *altethicalClient) Reindex(ctx context.Context, in *ReindexRequest, opts ...grpc.CallOption) (*ReindexResponse, error) {
+	out := new(ReindexResponse)
+	err := c.cc.Invoke(ctx, "/altethical.altethical/reindex", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *altethicalClient) Signup(ctx context.Context, in *SignupRequest, opts ...grpc.CallOption) (*SignupResponse, error) {
+	out := new(SignupResponse)
+	err := c.cc.Invoke(ctx, "/altethical.altethical/signup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *altethicalClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
+	out := new(SearchResponse)
+	err := c.cc.Invoke(ctx, "/altethical.altethical/search", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AltethicalServer is the server API for Altethical service.
 // All implementations must embed UnimplementedAltethicalServer
 // for forward compatibility
 type AltethicalServer interface {
 	// example is used to get which user is currently logged in
 	Example(context.Context, *ExampleRequest) (*ExampleResponse, error)
+	Reindex(context.Context, *ReindexRequest) (*ReindexResponse, error)
+	Signup(context.Context, *SignupRequest) (*SignupResponse, error)
+	Search(context.Context, *SearchRequest) (*SearchResponse, error)
 	mustEmbedUnimplementedAltethicalServer()
 }
 
@@ -53,6 +86,15 @@ type UnimplementedAltethicalServer struct {
 
 func (UnimplementedAltethicalServer) Example(context.Context, *ExampleRequest) (*ExampleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Example not implemented")
+}
+func (UnimplementedAltethicalServer) Reindex(context.Context, *ReindexRequest) (*ReindexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Reindex not implemented")
+}
+func (UnimplementedAltethicalServer) Signup(context.Context, *SignupRequest) (*SignupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Signup not implemented")
+}
+func (UnimplementedAltethicalServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
 }
 func (UnimplementedAltethicalServer) mustEmbedUnimplementedAltethicalServer() {}
 
@@ -85,6 +127,60 @@ func _Altethical_Example_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Altethical_Reindex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReindexRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AltethicalServer).Reindex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/altethical.altethical/reindex",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AltethicalServer).Reindex(ctx, req.(*ReindexRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Altethical_Signup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AltethicalServer).Signup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/altethical.altethical/signup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AltethicalServer).Signup(ctx, req.(*SignupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Altethical_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AltethicalServer).Search(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/altethical.altethical/search",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AltethicalServer).Search(ctx, req.(*SearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Altethical_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "altethical.altethical",
 	HandlerType: (*AltethicalServer)(nil),
@@ -92,6 +188,18 @@ var _Altethical_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "example",
 			Handler:    _Altethical_Example_Handler,
+		},
+		{
+			MethodName: "reindex",
+			Handler:    _Altethical_Reindex_Handler,
+		},
+		{
+			MethodName: "signup",
+			Handler:    _Altethical_Signup_Handler,
+		},
+		{
+			MethodName: "search",
+			Handler:    _Altethical_Search_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

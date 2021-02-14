@@ -150,5 +150,245 @@ proto.altethical.altethicalPromiseClient.prototype.example =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.altethical.reindexRequest,
+ *   !proto.altethical.reindexResponse>}
+ */
+const methodDescriptor_altethical_reindex = new grpc.web.MethodDescriptor(
+  '/altethical.altethical/reindex',
+  grpc.web.MethodType.UNARY,
+  proto.altethical.reindexRequest,
+  proto.altethical.reindexResponse,
+  /**
+   * @param {!proto.altethical.reindexRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.reindexResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.altethical.reindexRequest,
+ *   !proto.altethical.reindexResponse>}
+ */
+const methodInfo_altethical_reindex = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.altethical.reindexResponse,
+  /**
+   * @param {!proto.altethical.reindexRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.reindexResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.altethical.reindexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.altethical.reindexResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.altethical.reindexResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.altethical.altethicalClient.prototype.reindex =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/altethical.altethical/reindex',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_reindex,
+      callback);
+};
+
+
+/**
+ * @param {!proto.altethical.reindexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.altethical.reindexResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.altethical.altethicalPromiseClient.prototype.reindex =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/altethical.altethical/reindex',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_reindex);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.altethical.signupRequest,
+ *   !proto.altethical.signupResponse>}
+ */
+const methodDescriptor_altethical_signup = new grpc.web.MethodDescriptor(
+  '/altethical.altethical/signup',
+  grpc.web.MethodType.UNARY,
+  proto.altethical.signupRequest,
+  proto.altethical.signupResponse,
+  /**
+   * @param {!proto.altethical.signupRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.signupResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.altethical.signupRequest,
+ *   !proto.altethical.signupResponse>}
+ */
+const methodInfo_altethical_signup = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.altethical.signupResponse,
+  /**
+   * @param {!proto.altethical.signupRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.signupResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.altethical.signupRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.altethical.signupResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.altethical.signupResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.altethical.altethicalClient.prototype.signup =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/altethical.altethical/signup',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_signup,
+      callback);
+};
+
+
+/**
+ * @param {!proto.altethical.signupRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.altethical.signupResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.altethical.altethicalPromiseClient.prototype.signup =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/altethical.altethical/signup',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_signup);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.altethical.searchRequest,
+ *   !proto.altethical.searchResponse>}
+ */
+const methodDescriptor_altethical_search = new grpc.web.MethodDescriptor(
+  '/altethical.altethical/search',
+  grpc.web.MethodType.UNARY,
+  proto.altethical.searchRequest,
+  proto.altethical.searchResponse,
+  /**
+   * @param {!proto.altethical.searchRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.searchResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.altethical.searchRequest,
+ *   !proto.altethical.searchResponse>}
+ */
+const methodInfo_altethical_search = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.altethical.searchResponse,
+  /**
+   * @param {!proto.altethical.searchRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.searchResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.altethical.searchRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.altethical.searchResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.altethical.searchResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.altethical.altethicalClient.prototype.search =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/altethical.altethical/search',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_search,
+      callback);
+};
+
+
+/**
+ * @param {!proto.altethical.searchRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.altethical.searchResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.altethical.altethicalPromiseClient.prototype.search =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/altethical.altethical/search',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_search);
+};
+
+
 module.exports = proto.altethical;
 
