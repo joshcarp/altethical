@@ -15,6 +15,20 @@ altethical[~gRPC]:
         message <: string:
             @json_tag = "message"
             @rpcId = "1"
+    !type product:
+        @source_path = "api.proto"
+        image <: string:
+            @json_tag = "image"
+            @rpcId = "1"
+        score <: float:
+            @json_tag = "score"
+            @rpcId = "4"
+        title <: string:
+            @json_tag = "title"
+            @rpcId = "3"
+        url <: string:
+            @json_tag = "url"
+            @rpcId = "2"
     !type reindexRequest:
         @source_path = "api.proto"
         message <: string:
@@ -32,9 +46,7 @@ altethical[~gRPC]:
             @rpcId = "1"
     !type searchResponse:
         @source_path = "api.proto"
-        message <: string:
-            @json_tag = "message"
-            @rpcId = "1"
+        product <: sequence of product
     !type signupRequest:
         @source_path = "api.proto"
         url <: string:

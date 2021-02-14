@@ -50,5 +50,12 @@ message searchRequest {
 }
 
 message searchResponse {
-    string message = 1;
+    repeated product product = 1;
+}
+
+message product {
+    string image = 1;
+    string url = 2;
+    string title = 3;
+    float score = 4;
 }

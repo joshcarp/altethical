@@ -5,15 +5,17 @@ import (
     vision "cloud.google.com/go/vision/apiv1"
     "context"
     "fmt"
+    "github.com/joshcarp/altethical/backend/pkg/proto/altethical"
     visionpb "google.golang.org/genproto/googleapis/cloud/vision/v1"
     "io"
 )
 
-func Create(client *vision.ProductSearchClient, ctx context.Context, projectID string, location string, productID string, productDisplayName string, productCategory string) (string, error) {
+func Create(client *vision.ProductSearchClient, ctx context.Context, projectID string, location string, productID string, productDisplayName string, productCategory string, shopurl string) (string, error) {
     req := &visionpb.CreateProductRequest{
         Parent:    fmt.Sprintf("projects/%s/locations/%s", projectID, location),
         ProductId: productID,
         Product: &visionpb.Product{
+            Description:     shopurl,
             DisplayName:     productDisplayName,
             ProductCategory: productCategory,
         },
@@ -43,10 +45,10 @@ func CreateSet(client *vision.ProductSearchClient, ctx context.Context, projectI
     return resp.Name, nil
 }
 
-func SearchSet(client *vision.ImageAnnotatorClient, ctx context.Context, imager io.Reader, projectID string, location string, productSetID string, productCategory string, filter string) (string, error) {
+func SearchSet(client *vision.ImageAnnotatorClient, ctx context.Context, imager io.Reader, projectID string, location string, productSetID string, productCategory string, filter string) ([]*altethical.Product, error) {
     image, err := vision.NewImageFromReader(imager)
     if err != nil {
-        return "", err
+        return nil, err
     }
 
     ictx := &visionpb.ImageContext{
@@ -59,12 +61,13 @@ func SearchSet(client *vision.ImageAnnotatorClient, ctx context.Context, imager 
 
     response, err := client.ProductSearch(ctx, image, ictx)
     if err != nil {
-        return "", fmt.Errorf("ProductSearch: %v", err)
+        return nil, fmt.Errorf("ProductSearch: %v", err)
     }
+    var ret []*altethical.Product
     for _, e := range response.Results {
-        fmt.Printf("%s %f, %s\n", e.Product.Name, e.Score, e.Image)
+        ret = append(ret, &altethical.Product{Image: e.Image, Url: e.Product.Description, Score: e.GetScore()})
     }
-    return "", nil
+    return ret, nil
 }
 
 func ListSets(client *vision.ProductSearchClient, ctx context.Context, projectID string, location string, productSetID string, productSetDisplayName string) (string, error) {
@@ -118,4 +121,32 @@ func UploadImage(ctx context.Context, client *storage.Client, bucket string, obj
         return "", fmt.Errorf("io.Copy: %v", err)
     }
     return fmt.Sprintf("gs://%s/%s", bucket, object), nil
+}
+
+func Delete(client *vision.ProductSearchClient, ctx context.Context, productID string) error {
+    req := &visionpb.DeleteProductRequest{
+        Name: productID,
+    }
+
+    if err := client.DeleteProduct(ctx, req); err != nil {
+        return fmt.Errorf("NewProductSearchClient: %v", err)
+    }
+    return nil
+}
+
+func ListProducts(client *vision.ProductSearchClient, ctx context.Context, projectID string, location string) ([]string, error) {
+    resp := client.ListProducts(ctx, &visionpb.ListProductsRequest{
+        Parent:    "projects/" + projectID + "/locations/" + location,
+        PageSize:  0,
+        PageToken: "",
+    })
+    var ret []string
+    for {
+        set, err := resp.Next()
+        if set == nil || err != nil {
+            break
+        }
+        ret = append(ret, set.Name)
+    }
+    return ret, nil
 }
