@@ -65,7 +65,7 @@ func SearchSet(client *vision.ImageAnnotatorClient, ctx context.Context, imager 
     }
     var ret []*altethical.Product
     for _, e := range response.Results {
-        ret = append(ret, &altethical.Product{Image: e.Image, Url: e.Product.Description, Score: e.GetScore()})
+        ret = append(ret, &altethical.Product{Image: e.Image, Url: e.Product.Description, Score: e.GetScore(), Title: e.Product.DisplayName})
     }
     return ret, nil
 }
