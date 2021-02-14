@@ -72,7 +72,10 @@ func (s Server) SearchImage(ctx context.Context, req *altethical.SearchRequest) 
         return nil, err
     }
     set, err := products.SearchSet(s.imageClient, ctx, bytes.NewReader(dataURL.Data), s.config.GCP.ProjectID, s.config.GCP.Location, s.config.GCP.ProductSetId, "apparel-v2", "")
+    if err != nil{
+        log.Infof("%v", err)
+    }
     return &altethical.SearchResponse{
         Product: set,
-    }, nil
+    }, err
 }

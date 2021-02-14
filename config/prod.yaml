@@ -2,7 +2,6 @@ server:
     port:  443
 gcp:
     projectid:  "altethical"
-    projectnum: "968747045906"
-    databaseurl:   "https://altethical.firebaseio.com"
-    storagebucket: "altethical.appspot.com"
-    secretname: "jwtkey"
+    storagebucket: "altethical-images"
+    location: "us-east1"
+    productsetid: "altethical"
