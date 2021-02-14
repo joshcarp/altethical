@@ -1,10 +1,14 @@
-# it project: Epic Portfolio
-[![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org) [![Website epicportfol.io](https://img.shields.io/website-up-down-green-red/http/epicportfol.io)](http://epicportfol.io)
+# AltEthical: The ethical alternative
+[![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org) [![Website epicportfol.io](https://img.shields.io/website-up-down-green-red/http/altethical.com)](http://altethical.com)
 
 
-- A Portfolio website designed for COMP30022
+A website for finding ethical alternatives to popular products.
 
-Click [here](https://github.com/joshcarp/altethical/wiki) for documentation
+## Made using
+- Go
+- GCP Vision API
+- React
+- GCP cloud run
 
 ## Directory structure
 
