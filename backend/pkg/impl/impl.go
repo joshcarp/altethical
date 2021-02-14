@@ -26,7 +26,8 @@ func (s Server) Signup(ctx context.Context, req *altethical.SignupRequest) (*alt
     var w sync.WaitGroup
     for _, e := range b.Products {
         productid := fmt.Sprintf("%d", e.ID)
-        _, _ = products.Create(s.productClient, context.Background(), s.config.GCP.ProjectID, s.config.GCP.Location, productid, e.Title, "apparel-v2")
+        productURL := fmt.Sprintf("%s/collections/all-products/products/%s", req.GetUrl(), e.Handle)
+        _, _ = products.Create(s.productClient, context.Background(), s.config.GCP.ProjectID, s.config.GCP.Location, productid, e.Title, "apparel-v2", productURL)
         for _, image := range e.Images {
             w.Add(1)
             go func(ctx context.Context, image shopifyclient.Images, productid string) {
@@ -68,6 +69,6 @@ func (s Server) Search(ctx context.Context, req *altethical.SearchRequest) (*alt
     }
     set, err := products.SearchSet(s.imageClient, ctx, resp.Body, s.config.GCP.ProjectID, s.config.GCP.Location, s.config.GCP.ProductSetId, "apparel-v2", "")
     return &altethical.SearchResponse{
-        Message: set,
+        Product: set,
     }, nil
 }
