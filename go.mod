@@ -12,6 +12,7 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/protobuf v1.4.3
+	github.com/google/martian/v3 v3.1.0
 	github.com/gorilla/websocket v1.4.0 // indirect
 	github.com/improbable-eng/grpc-web v0.13.0
 	github.com/lib/pq v1.1.1 // indirect
@@ -21,6 +22,7 @@ require (
 	github.com/spf13/afero v1.1.2
 	github.com/stretchr/testify v1.5.1
 	github.com/vincent-petithory/dataurl v0.0.0-20191104211930-d1553a71de50
+	golang.org/x/net v0.0.0-20201031054903-ff519b6c9102
 	google.golang.org/genproto v0.0.0-20201109203340-2640f1f9cdfb
 	google.golang.org/grpc v1.33.2
 	google.golang.org/protobuf v1.25.0

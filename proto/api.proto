@@ -15,13 +15,39 @@ altethical microservice
 service altethical {
     /* example is used to get which user is currently logged in */
     rpc example(exampleRequest) returns (exampleResponse);
+    rpc signup(signupRequest) returns (signupResponse);
+    rpc search(searchRequest) returns (searchResponse);
 }
-
 
 message exampleRequest {
     string message = 1;
 }
 
 message exampleResponse {
+    string message = 1;
+}
+
+
+message reindexRequest {
+    string message = 1;
+}
+
+message reindexResponse {
+    string message = 1;
+}
+
+message signupRequest {
+    string url = 1;
+}
+
+message signupResponse {
+    string message = 1;
+}
+
+message searchRequest {
+    string message = 1;
+}
+
+message searchResponse {
     string message = 1;
 }
