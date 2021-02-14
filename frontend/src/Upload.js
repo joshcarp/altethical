@@ -25,7 +25,7 @@ export default function CustomizedTimeline(props) {
             withIcon={true}
             buttonText="Choose images"
             onChange={onDrop}
-            imgExtension={[".jpg", ".png"]}
+            imgExtension={[".jpg", ".png", ".jpeg"]}
             maxFileSize={5242880}
         />
         <br/>
