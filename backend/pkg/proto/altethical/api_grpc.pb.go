@@ -19,9 +19,8 @@ const _ = grpc.SupportPackageIsVersion7
 type AltethicalClient interface {
 	// example is used to get which user is currently logged in
 	Example(ctx context.Context, in *ExampleRequest, opts ...grpc.CallOption) (*ExampleResponse, error)
-	Reindex(ctx context.Context, in *ReindexRequest, opts ...grpc.CallOption) (*ReindexResponse, error)
 	Signup(ctx context.Context, in *SignupRequest, opts ...grpc.CallOption) (*SignupResponse, error)
-	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
+	SearchImage(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 }
 
 type altethicalClient struct {
@@ -41,15 +40,6 @@ func (c *altethicalClient) Example(ctx context.Context, in *ExampleRequest, opts
 	return out, nil
 }
 
-func (c *altethicalClient) Reindex(ctx context.Context, in *ReindexRequest, opts ...grpc.CallOption) (*ReindexResponse, error) {
-	out := new(ReindexResponse)
-	err := c.cc.Invoke(ctx, "/altethical.altethical/reindex", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *altethicalClient) Signup(ctx context.Context, in *SignupRequest, opts ...grpc.CallOption) (*SignupResponse, error) {
 	out := new(SignupResponse)
 	err := c.cc.Invoke(ctx, "/altethical.altethical/signup", in, out, opts...)
@@ -59,9 +49,9 @@ func (c *altethicalClient) Signup(ctx context.Context, in *SignupRequest, opts .
 	return out, nil
 }
 
-func (c *altethicalClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
+func (c *altethicalClient) SearchImage(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
 	out := new(SearchResponse)
-	err := c.cc.Invoke(ctx, "/altethical.altethical/search", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/altethical.altethical/searchImage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,9 +64,8 @@ func (c *altethicalClient) Search(ctx context.Context, in *SearchRequest, opts .
 type AltethicalServer interface {
 	// example is used to get which user is currently logged in
 	Example(context.Context, *ExampleRequest) (*ExampleResponse, error)
-	Reindex(context.Context, *ReindexRequest) (*ReindexResponse, error)
 	Signup(context.Context, *SignupRequest) (*SignupResponse, error)
-	Search(context.Context, *SearchRequest) (*SearchResponse, error)
+	SearchImage(context.Context, *SearchRequest) (*SearchResponse, error)
 	mustEmbedUnimplementedAltethicalServer()
 }
 
@@ -87,14 +76,11 @@ type UnimplementedAltethicalServer struct {
 func (UnimplementedAltethicalServer) Example(context.Context, *ExampleRequest) (*ExampleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Example not implemented")
 }
-func (UnimplementedAltethicalServer) Reindex(context.Context, *ReindexRequest) (*ReindexResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Reindex not implemented")
-}
 func (UnimplementedAltethicalServer) Signup(context.Context, *SignupRequest) (*SignupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Signup not implemented")
 }
-func (UnimplementedAltethicalServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+func (UnimplementedAltethicalServer) SearchImage(context.Context, *SearchRequest) (*SearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchImage not implemented")
 }
 func (UnimplementedAltethicalServer) mustEmbedUnimplementedAltethicalServer() {}
 
@@ -127,24 +113,6 @@ func _Altethical_Example_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Altethical_Reindex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReindexRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AltethicalServer).Reindex(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/altethical.altethical/reindex",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AltethicalServer).Reindex(ctx, req.(*ReindexRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Altethical_Signup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SignupRequest)
 	if err := dec(in); err != nil {
@@ -163,20 +131,20 @@ func _Altethical_Signup_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Altethical_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Altethical_SearchImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AltethicalServer).Search(ctx, in)
+		return srv.(AltethicalServer).SearchImage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/altethical.altethical/search",
+		FullMethod: "/altethical.altethical/searchImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AltethicalServer).Search(ctx, req.(*SearchRequest))
+		return srv.(AltethicalServer).SearchImage(ctx, req.(*SearchRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -190,16 +158,12 @@ var _Altethical_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Altethical_Example_Handler,
 		},
 		{
-			MethodName: "reindex",
-			Handler:    _Altethical_Reindex_Handler,
-		},
-		{
 			MethodName: "signup",
 			Handler:    _Altethical_Signup_Handler,
 		},
 		{
-			MethodName: "search",
-			Handler:    _Altethical_Search_Handler,
+			MethodName: "searchImage",
+			Handler:    _Altethical_SearchImage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

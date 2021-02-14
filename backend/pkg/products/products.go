@@ -43,15 +43,39 @@ func CreateSet(client *vision.ProductSearchClient, ctx context.Context, projectI
     return resp.Name, nil
 }
 
+func SearchSet(client *vision.ImageAnnotatorClient, ctx context.Context, imager io.Reader, projectID string, location string, productSetID string, productCategory string, filter string) (string, error) {
+    image, err := vision.NewImageFromReader(imager)
+    if err != nil {
+        return "", err
+    }
+
+    ictx := &visionpb.ImageContext{
+        ProductSearchParams: &visionpb.ProductSearchParams{
+            ProductSet:        fmt.Sprintf("projects/%s/locations/%s/productSets/%s", projectID, location, productSetID),
+            ProductCategories: []string{productCategory},
+            Filter:            filter,
+        },
+    }
+
+    response, err := client.ProductSearch(ctx, image, ictx)
+    if err != nil {
+        return "", fmt.Errorf("ProductSearch: %v", err)
+    }
+    for _, e := range response.Results {
+        fmt.Printf("%s %f, %s\n", e.Product.Name, e.Score, e.Image)
+    }
+    return "", nil
+}
+
 func ListSets(client *vision.ProductSearchClient, ctx context.Context, projectID string, location string, productSetID string, productSetDisplayName string) (string, error) {
     resp := client.ListProductSets(ctx, &visionpb.ListProductSetsRequest{
-        Parent:    "projects/"+projectID+"/locations/"+location,
+        Parent:    "projects/" + projectID + "/locations/" + location,
         PageSize:  0,
         PageToken: "",
     })
     for {
         set, err := resp.Next()
-        if set == nil || err != nil{
+        if set == nil || err != nil {
             break
         }
         fmt.Println(set.Name)

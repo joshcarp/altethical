@@ -27,8 +27,8 @@ altethical[~gRPC]:
             @rpcId = "1"
     !type searchRequest:
         @source_path = "api.proto"
-        message <: string:
-            @json_tag = "message"
+        url <: string:
+            @json_tag = "url"
             @rpcId = "1"
     !type searchResponse:
         @source_path = "api.proto"
@@ -49,11 +49,7 @@ altethical[~gRPC]:
         @description = " example is used to get which user is currently logged in "
         @source_path = "api.proto"
         return ok <: altethical.exampleResponse
-    reindex(input <: altethical.reindexRequest)[~gRPC]:
-        @description = ""
-        @source_path = "api.proto"
-        return ok <: altethical.reindexResponse
-    search(input <: altethical.searchRequest)[~gRPC]:
+    searchImage(input <: altethical.searchRequest)[~gRPC]:
         @description = ""
         @source_path = "api.proto"
         return ok <: altethical.searchResponse

@@ -16,7 +16,8 @@ service altethical {
     /* example is used to get which user is currently logged in */
     rpc example(exampleRequest) returns (exampleResponse);
     rpc signup(signupRequest) returns (signupResponse);
-    rpc search(searchRequest) returns (searchResponse);
+    rpc searchImage(searchRequest) returns (searchResponse);
+
 }
 
 message exampleRequest {
@@ -45,7 +46,7 @@ message signupResponse {
 }
 
 message searchRequest {
-    string message = 1;
+    string url = 1;
 }
 
 message searchResponse {

@@ -4,7 +4,6 @@ import (
     "context"
     "fmt"
     "github.com/joshcarp/altethical/backend/pkg/config"
-    "github.com/joshcarp/altethical/backend/pkg/products"
     "github.com/joshcarp/altethical/backend/pkg/proto/altethical"
     "github.com/sirupsen/logrus"
     "github.com/spf13/afero"
@@ -29,6 +28,8 @@ func TestCreateSet(t *testing.T) {
     require.NoError(t, err)
     s, err := NewServer(conf, logrus.New())
     require.NoError(t, err)
-    products.ListSets(s.productClient, context.Background(), s.config.GCP.ProjectID, s.config.GCP.Location, "altethical", "altethical")
-
+    r, err := s.Search(context.Background(), &altethical.SearchRequest{
+        Url: "https://cdn.shopify.com/s/files/1/0004/5252/6146/products/DSC_4446_1080x.jpg?v=1604199029",
+    })
+    fmt.Println(r, err)
 }
