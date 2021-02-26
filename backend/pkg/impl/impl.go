@@ -53,7 +53,6 @@ func (s Server) Signup(ctx context.Context, req *altethical.SignupRequest) (*alt
                 if err != nil {
                     log.Infof("AddProductToSet: %w", err)
                 }
-                return
             }(ctx, image, productid)
         }
 
