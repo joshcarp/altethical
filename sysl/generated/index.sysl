@@ -5,6 +5,12 @@ altethical[~gRPC]:
         |altethical microservice
     @package = "altethical"
     @source_path = "api.proto"
+    !type byclicksRequest[~empty]:
+        @source_path = "api.proto"
+        ...
+    !type byimagesRequest[~empty]:
+        @source_path = "api.proto"
+        ...
     !type exampleRequest:
         @source_path = "api.proto"
         message <: string:
@@ -57,13 +63,21 @@ altethical[~gRPC]:
         message <: string:
             @json_tag = "message"
             @rpcId = "1"
+    byclicks(input <: altethical.byclicksRequest)[~gRPC]:
+        @description =:
+            |        rpc signup(signupRequest) returns (signupResponse); // this is temporarily disabled because loading is done through config atm
+        @source_path = "api.proto"
+        return ok <: altethical.searchResponse
+    byimages(input <: altethical.byimagesRequest)[~gRPC]:
+        @description = ""
+        @source_path = "api.proto"
+        return ok <: altethical.searchResponse
     example(input <: altethical.exampleRequest)[~gRPC]:
         @description = " example is used to get which user is currently logged in "
         @source_path = "api.proto"
         return ok <: altethical.exampleResponse
     searchImage(input <: altethical.searchRequest)[~gRPC]:
-        @description =:
-            |        rpc signup(signupRequest) returns (signupResponse); // this is temporarily disabled because loading is done through config atm
+        @description = ""
         @source_path = "api.proto"
         return ok <: altethical.searchResponse
 
