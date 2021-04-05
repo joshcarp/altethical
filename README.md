@@ -20,3 +20,7 @@ A website for finding ethical alternatives to popular products.
 - `frontend` react frontend
 - `proto` protobuf representation of the grpc services used in this project
 - `sysl` system specification language; a diagramming tool to describe how our service works 
+
+## Issues
+- Rate limiting when trying to load from the shopify API
+- Dynamically updating products/stores
