@@ -13,6 +13,7 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/protobuf v1.4.3
 	github.com/google/martian/v3 v3.1.0
+	github.com/googleapis/gax-go/v2 v2.0.5 // indirect
 	github.com/gorilla/websocket v1.4.0 // indirect
 	github.com/improbable-eng/grpc-web v0.13.0
 	github.com/lib/pq v1.1.1 // indirect

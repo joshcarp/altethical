@@ -8,7 +8,7 @@ import (
 
 func GetShopifyProducts(client *http.Client, url string) (ShopifyResponse, error) {
     var b ShopifyResponse
-    resp, err := client.Get(url + "/products.json")
+    resp, err := client.Get(url + "/products.json?limit=250")
     if err != nil {
         return ShopifyResponse{}, err
     }

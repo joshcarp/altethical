@@ -9,7 +9,6 @@ import (
     "time"
 )
 
-
 func main() {
     address := os.Getenv("ADDR")
     //cp, err := x509.SystemCertPool()
@@ -19,7 +18,7 @@ func main() {
     //opts := grpc.WithTransportCredentials(credentials.NewClientTLSFromCert(cp, ""))
 
     // Set up a connection to the server.
-    conn, err := grpc.DialContext(context.Background(),address, grpc.WithInsecure())
+    conn, err := grpc.DialContext(context.Background(), address, grpc.WithInsecure())
     if err != nil {
         log.Fatalf("did not connect: %v", err)
     }
@@ -37,4 +36,3 @@ func main() {
     }
     log.Printf("Greeting: %s", r.String())
 }
-
