@@ -5,3 +5,8 @@ gcp:
     storagebucket: "altethical-images"
     location: "us-east1"
     productsetid: "altethical"
+merchants:
+    - https://etiko.com.au
+    - https://www.patagonia.com.au
+    - https://www.wearetala.com
+    - https://abch.world

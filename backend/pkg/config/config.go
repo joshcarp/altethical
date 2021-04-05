@@ -18,25 +18,18 @@ func ReadConfig(fs afero.Fs, filename string) (Config, error) {
 }
 
 type Config struct {
-    Database struct {
-        Type     string `yaml:"type"`
-        Schema   string `yaml:"schema"`
-        Host     string `yaml:"host"`
-        Dbname   string `yaml:"dbname"`
-        Port     string `yaml:"port"`
-        User     string `yaml:"user"`
-        Password string `yaml:"password"`
-    } `yaml:"database"`
-    Server struct {
-        Port string `yaml:"port"`
-    } `yaml:"server"`
-    GCP struct {
-        ProjectID     string `yaml:"projectid"`
-        ProjectNum    string `yaml:"projectnum"`
-        SecretName    string `yaml:"secretname"`
-        Databaseurl   string `yaml:"databaseurl"`
-        Storagebucket string `yaml:"storagebucket"`
-        Location      string `yaml:"location" envconfig:"LOCATION"`
-        ProductSetId      string `yaml:"productsetid" envconfig:"PRODUCTSETID"`
-    } `yaml:"gcp"`
+    Server    Server   `json:"server"`
+    GCP       Gcp      `json:"gcp"`
+    Merchants []string `json:"merchants"`
+}
+
+type Gcp struct {
+    ProjectID     string `json:"projectid"`
+    Storagebucket string `json:"storagebucket"`
+    Location      string `yaml:"location" envconfig:"LOCATION"`
+    ProductSetId  string `yaml:"productsetid" envconfig:"PRODUCTSETID"`
+}
+
+type Server struct {
+    Port string `json:"port"`
 }
