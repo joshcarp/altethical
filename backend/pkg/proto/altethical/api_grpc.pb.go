@@ -19,7 +19,6 @@ const _ = grpc.SupportPackageIsVersion7
 type AltethicalClient interface {
 	// example is used to get which user is currently logged in
 	Example(ctx context.Context, in *ExampleRequest, opts ...grpc.CallOption) (*ExampleResponse, error)
-	Signup(ctx context.Context, in *SignupRequest, opts ...grpc.CallOption) (*SignupResponse, error)
 	SearchImage(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 }
 
@@ -34,15 +33,6 @@ func NewAltethicalClient(cc grpc.ClientConnInterface) AltethicalClient {
 func (c *altethicalClient) Example(ctx context.Context, in *ExampleRequest, opts ...grpc.CallOption) (*ExampleResponse, error) {
 	out := new(ExampleResponse)
 	err := c.cc.Invoke(ctx, "/altethical.altethical/example", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *altethicalClient) Signup(ctx context.Context, in *SignupRequest, opts ...grpc.CallOption) (*SignupResponse, error) {
-	out := new(SignupResponse)
-	err := c.cc.Invoke(ctx, "/altethical.altethical/signup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +54,6 @@ func (c *altethicalClient) SearchImage(ctx context.Context, in *SearchRequest, o
 type AltethicalServer interface {
 	// example is used to get which user is currently logged in
 	Example(context.Context, *ExampleRequest) (*ExampleResponse, error)
-	Signup(context.Context, *SignupRequest) (*SignupResponse, error)
 	SearchImage(context.Context, *SearchRequest) (*SearchResponse, error)
 	mustEmbedUnimplementedAltethicalServer()
 }
@@ -75,9 +64,6 @@ type UnimplementedAltethicalServer struct {
 
 func (UnimplementedAltethicalServer) Example(context.Context, *ExampleRequest) (*ExampleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Example not implemented")
-}
-func (UnimplementedAltethicalServer) Signup(context.Context, *SignupRequest) (*SignupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Signup not implemented")
 }
 func (UnimplementedAltethicalServer) SearchImage(context.Context, *SearchRequest) (*SearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchImage not implemented")
@@ -113,24 +99,6 @@ func _Altethical_Example_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Altethical_Signup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SignupRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AltethicalServer).Signup(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/altethical.altethical/signup",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AltethicalServer).Signup(ctx, req.(*SignupRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Altethical_SearchImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchRequest)
 	if err := dec(in); err != nil {
@@ -156,10 +124,6 @@ var _Altethical_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "example",
 			Handler:    _Altethical_Example_Handler,
-		},
-		{
-			MethodName: "signup",
-			Handler:    _Altethical_Signup_Handler,
 		},
 		{
 			MethodName: "searchImage",

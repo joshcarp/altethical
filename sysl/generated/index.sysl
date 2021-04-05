@@ -62,11 +62,8 @@ altethical[~gRPC]:
         @source_path = "api.proto"
         return ok <: altethical.exampleResponse
     searchImage(input <: altethical.searchRequest)[~gRPC]:
-        @description = ""
+        @description =:
+            |        rpc signup(signupRequest) returns (signupResponse); // this is temporarily disabled because loading is done through config atm
         @source_path = "api.proto"
         return ok <: altethical.searchResponse
-    signup(input <: altethical.signupRequest)[~gRPC]:
-        @description = ""
-        @source_path = "api.proto"
-        return ok <: altethical.signupResponse
 
