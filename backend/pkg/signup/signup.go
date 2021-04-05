@@ -61,15 +61,15 @@ func SignUpStore(ctx context.Context, url string, httpClient *http.Client, cfg c
                 id := hex.EncodeToString(hash[:])
                 url, err := products.UploadImage(ctx, storageClient, cfg.GCP.Storagebucket, id, resp.Body)
                 if err != nil {
-                    log.Printf("UploadImage: %w", err)
+                    log.Printf("UploadImage: %v", err)
                 }
                 _, _, err = products.CreateReferenceImage(productClient, ctx, cfg.GCP.ProjectID, cfg.GCP.Location, productid, id, url)
                 if err != nil {
-                    log.Printf("CreateReferenceImage: %w", err)
+                    log.Printf("CreateReferenceImage: %v", err)
                 }
                 err = products.AddProductToSet(productClient, ctx, cfg.GCP.ProjectID, cfg.GCP.Location, productid, cfg.GCP.ProductSetId)
                 if err != nil {
-                    log.Printf("AddProductToSet: %w", err)
+                    log.Printf("AddProductToSet: %v", err)
                 }
             }(ctx, image, productid)
         }

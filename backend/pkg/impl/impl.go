@@ -16,7 +16,6 @@ func (s Server) Example(ctx context.Context, req *altethical.ExampleRequest) (*a
     }, nil
 }
 
-
 //data:image/jpeg;name=DSC.jpg;base64,/9j/4AAQ
 func (s Server) SearchImage(ctx context.Context, req *altethical.SearchRequest) (*altethical.SearchResponse, error) {
     url := regexp.MustCompile("name=.*;").ReplaceAllString(req.GetUrl(), "")
@@ -31,4 +30,11 @@ func (s Server) SearchImage(ctx context.Context, req *altethical.SearchRequest) 
     return &altethical.SearchResponse{
         Product: set,
     }, err
+}
+
+func (s Server) Byimages(context.Context, *altethical.ByimagesRequest) (*altethical.SearchResponse, error) {
+    panic("not implemented")
+}
+func (s Server) Byclicks(context.Context, *altethical.ByclicksRequest) (*altethical.SearchResponse, error) {
+    panic("not implemented")
 }

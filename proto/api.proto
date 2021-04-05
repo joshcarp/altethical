@@ -16,8 +16,16 @@ service altethical {
     /* example is used to get which user is currently logged in */
     rpc example(exampleRequest) returns (exampleResponse);
     rpc searchImage(searchRequest) returns (searchResponse);
+    rpc byimages(byimagesRequest) returns (searchResponse);
+    rpc byclicks(byclicksRequest) returns (searchResponse);
     //        rpc signup(signupRequest) returns (signupResponse); // this is temporarily disabled because loading is done through config atm
 
+}
+
+message byimagesRequest {
+}
+
+message byclicksRequest {
 }
 
 message exampleRequest {

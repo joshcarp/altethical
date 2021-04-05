@@ -230,5 +230,165 @@ proto.altethical.altethicalPromiseClient.prototype.searchImage =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.altethical.byimagesRequest,
+ *   !proto.altethical.searchResponse>}
+ */
+const methodDescriptor_altethical_byimages = new grpc.web.MethodDescriptor(
+  '/altethical.altethical/byimages',
+  grpc.web.MethodType.UNARY,
+  proto.altethical.byimagesRequest,
+  proto.altethical.searchResponse,
+  /**
+   * @param {!proto.altethical.byimagesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.searchResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.altethical.byimagesRequest,
+ *   !proto.altethical.searchResponse>}
+ */
+const methodInfo_altethical_byimages = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.altethical.searchResponse,
+  /**
+   * @param {!proto.altethical.byimagesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.searchResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.altethical.byimagesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.altethical.searchResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.altethical.searchResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.altethical.altethicalClient.prototype.byimages =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/altethical.altethical/byimages',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_byimages,
+      callback);
+};
+
+
+/**
+ * @param {!proto.altethical.byimagesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.altethical.searchResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.altethical.altethicalPromiseClient.prototype.byimages =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/altethical.altethical/byimages',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_byimages);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.altethical.byclicksRequest,
+ *   !proto.altethical.searchResponse>}
+ */
+const methodDescriptor_altethical_byclicks = new grpc.web.MethodDescriptor(
+  '/altethical.altethical/byclicks',
+  grpc.web.MethodType.UNARY,
+  proto.altethical.byclicksRequest,
+  proto.altethical.searchResponse,
+  /**
+   * @param {!proto.altethical.byclicksRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.searchResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.altethical.byclicksRequest,
+ *   !proto.altethical.searchResponse>}
+ */
+const methodInfo_altethical_byclicks = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.altethical.searchResponse,
+  /**
+   * @param {!proto.altethical.byclicksRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.altethical.searchResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.altethical.byclicksRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.altethical.searchResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.altethical.searchResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.altethical.altethicalClient.prototype.byclicks =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/altethical.altethical/byclicks',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_byclicks,
+      callback);
+};
+
+
+/**
+ * @param {!proto.altethical.byclicksRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.altethical.searchResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.altethical.altethicalPromiseClient.prototype.byclicks =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/altethical.altethical/byclicks',
+      request,
+      metadata || {},
+      methodDescriptor_altethical_byclicks);
+};
+
+
 module.exports = proto.altethical;
 

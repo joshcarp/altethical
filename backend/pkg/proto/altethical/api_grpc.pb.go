@@ -20,6 +20,8 @@ type AltethicalClient interface {
 	// example is used to get which user is currently logged in
 	Example(ctx context.Context, in *ExampleRequest, opts ...grpc.CallOption) (*ExampleResponse, error)
 	SearchImage(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
+	Byimages(ctx context.Context, in *ByimagesRequest, opts ...grpc.CallOption) (*SearchResponse, error)
+	Byclicks(ctx context.Context, in *ByclicksRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 }
 
 type altethicalClient struct {
@@ -48,6 +50,24 @@ func (c *altethicalClient) SearchImage(ctx context.Context, in *SearchRequest, o
 	return out, nil
 }
 
+func (c *altethicalClient) Byimages(ctx context.Context, in *ByimagesRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
+	out := new(SearchResponse)
+	err := c.cc.Invoke(ctx, "/altethical.altethical/byimages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *altethicalClient) Byclicks(ctx context.Context, in *ByclicksRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
+	out := new(SearchResponse)
+	err := c.cc.Invoke(ctx, "/altethical.altethical/byclicks", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AltethicalServer is the server API for Altethical service.
 // All implementations must embed UnimplementedAltethicalServer
 // for forward compatibility
@@ -55,6 +75,8 @@ type AltethicalServer interface {
 	// example is used to get which user is currently logged in
 	Example(context.Context, *ExampleRequest) (*ExampleResponse, error)
 	SearchImage(context.Context, *SearchRequest) (*SearchResponse, error)
+	Byimages(context.Context, *ByimagesRequest) (*SearchResponse, error)
+	Byclicks(context.Context, *ByclicksRequest) (*SearchResponse, error)
 	mustEmbedUnimplementedAltethicalServer()
 }
 
@@ -67,6 +89,12 @@ func (UnimplementedAltethicalServer) Example(context.Context, *ExampleRequest) (
 }
 func (UnimplementedAltethicalServer) SearchImage(context.Context, *SearchRequest) (*SearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchImage not implemented")
+}
+func (UnimplementedAltethicalServer) Byimages(context.Context, *ByimagesRequest) (*SearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Byimages not implemented")
+}
+func (UnimplementedAltethicalServer) Byclicks(context.Context, *ByclicksRequest) (*SearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Byclicks not implemented")
 }
 func (UnimplementedAltethicalServer) mustEmbedUnimplementedAltethicalServer() {}
 
@@ -117,6 +145,42 @@ func _Altethical_SearchImage_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Altethical_Byimages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ByimagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AltethicalServer).Byimages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/altethical.altethical/byimages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AltethicalServer).Byimages(ctx, req.(*ByimagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Altethical_Byclicks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ByclicksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AltethicalServer).Byclicks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/altethical.altethical/byclicks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AltethicalServer).Byclicks(ctx, req.(*ByclicksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Altethical_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "altethical.altethical",
 	HandlerType: (*AltethicalServer)(nil),
@@ -128,6 +192,14 @@ var _Altethical_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "searchImage",
 			Handler:    _Altethical_SearchImage_Handler,
+		},
+		{
+			MethodName: "byimages",
+			Handler:    _Altethical_Byimages_Handler,
+		},
+		{
+			MethodName: "byclicks",
+			Handler:    _Altethical_Byclicks_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
